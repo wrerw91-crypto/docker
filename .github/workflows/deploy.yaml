@@ -23,3 +23,7 @@ jobs:
 
       - name: push Docker image
         run: docker push dota3legend322/asd:latest
+      - name: Trigger Render Deploy
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: curl --fail --silent --show-error -X POST "$RENDER_DEPLOY_HOOK_URL"
